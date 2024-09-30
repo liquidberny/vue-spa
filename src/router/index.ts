@@ -31,6 +31,17 @@ const router = createRouter({
           name: 'contact',
           component: () => import('@/modules/landing/pages/ContactPage.vue'),
         },
+        {
+          path: '/pokemon/:id',
+          name: 'pokemon',
+          props: (route) => {
+            // el + al lado de route convierte el string del prop en numero
+            const id = +route.params.id;
+
+            return isNaN(id) ? { id: 1 } : { id };
+          },
+          component: () => import('@/modules/pokemons/pages/PokemonPage.vue'),
+        },
       ],
     },
     // Auth
