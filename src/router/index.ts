@@ -1,3 +1,4 @@
+import isAuthenticatedGuard from '@/modules/auth/guards/is-authenticated.guard';
 import NotFound404 from '@/modules/common/pages/NotFound404.vue';
 import HomePage from '@/modules/landing/pages/HomePage.vue';
 import { createRouter, createWebHistory } from 'vue-router';
@@ -34,6 +35,13 @@ const router = createRouter({
         {
           path: '/pokemon/:id',
           name: 'pokemon',
+          beforeEnter: [
+            isAuthenticatedGuard,
+            // (to, from, next) => {
+            //   console.log('temporal: ', { to, from, next });
+            //   return next();
+            // },
+          ],
           props: (route) => {
             // el + al lado de route convierte el string del prop en numero
             const id = +route.params.id;
