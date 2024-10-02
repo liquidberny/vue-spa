@@ -23,7 +23,6 @@ describe('<PokemonPage />', () => {
   test('should redirect to the next pokemon', () => {
     //RouterLinkStub es un espia del RouterLink en PokemonPage
     const link = wrapper.findComponent(RouterLinkStub);
-    console.log(link.html());
     // console.log(link.props());
     expect(link.props().to).toEqual({ name: 'pokemon', params: { id: 26 } });
   });
