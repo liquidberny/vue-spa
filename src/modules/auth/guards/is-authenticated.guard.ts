@@ -8,7 +8,6 @@ const isAuthenticatedGuard = async (
   const userId = localStorage.getItem('userId');
   localStorage.setItem('lastPath', to.path);
 
-  console.log('userId', userId);
   if (!userId) {
     return next({
       name: 'login',
