@@ -31,7 +31,7 @@ describe('is-authenticated.guard', () => {
   });
 
   test('should called localStorage set item lastPath', async () => {
-    await isAuthenticatedGuard(to, to, next);
+    await isAuthenticatedGuard(to, from, next);
 
     const lastPath = localStorage.getItem('lastPath');
 
@@ -42,7 +42,7 @@ describe('is-authenticated.guard', () => {
     //preparando el espia para setItem
     const setItemSpy = vi.spyOn(Storage.prototype, 'setItem');
 
-    await isAuthenticatedGuard(to, to, next);
+    await isAuthenticatedGuard(to, from, next);
 
     expect(setItemSpy).toHaveBeenCalledWith('lastPath', to.path);
   });
@@ -50,7 +50,7 @@ describe('is-authenticated.guard', () => {
   test('shoud pass if authenticated', async () => {
     vi.spyOn(Storage.prototype, 'getItem').mockReturnValue('ABC-123456');
 
-    await isAuthenticatedGuard(to, to, next);
+    await isAuthenticatedGuard(to, from, next);
 
     expect(next).toHaveBeenCalledWith(); //undefined
   });
